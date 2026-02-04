@@ -1,0 +1,654 @@
+/* style.css - 스타일 정의 */
+
+/* ============================================================
+   기본 설정
+   ============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+/* ============================================================
+   헤더
+   ============================================================ */
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+}
+
+header h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+header p {
+    opacity: 0.9;
+    font-size: 14px;
+}
+
+
+/* ============================================================
+   메인 레이아웃
+   ============================================================ */
+.main-content {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ============================================================
+   사이드바
+   ============================================================ */
+.sidebar {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+
+/* ============================================================
+   진척률 섹션
+   ============================================================ */
+.progress-section {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 1px solid #7dd3fc;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.progress-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0369a1;
+    margin-bottom: 12px;
+}
+
+.progress-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.progress-stat {
+    text-align: center;
+}
+
+.progress-label {
+    display: block;
+    font-size: 11px;
+    color: #64748b;
+    margin-bottom: 2px;
+}
+
+.progress-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0369a1;
+}
+
+.progress-bar-container {
+    margin-bottom: 8px;
+}
+
+.progress-bar {
+    height: 12px;
+    background: #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+}
+
+.progress-bar-sent {
+    background: #22c55e;
+    transition: width 0.3s;
+}
+
+.progress-bar-responded {
+    background: #667eea;
+    transition: width 0.3s;
+}
+
+.progress-legend {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    font-size: 11px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #64748b;
+}
+
+.legend-color {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+.legend-color.sent {
+    background: #22c55e;
+}
+
+.legend-color.responded {
+    background: #667eea;
+}
+
+.legend-color.remaining {
+    background: #e2e8f0;
+}
+
+.not-responded-details {
+    margin-top: 12px;
+    font-size: 12px;
+}
+
+.not-responded-details summary {
+    cursor: pointer;
+    color: #0369a1;
+    font-weight: 500;
+}
+
+.not-responded-list {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.not-responded-name {
+    background: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: #64748b;
+}
+
+
+/* ============================================================
+   통계
+   ============================================================ */
+.stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.stat-item {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 24px;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.stat-number.pending {
+    color: #f59e0b;
+}
+
+.stat-number.done {
+    color: #22c55e;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #888;
+}
+
+
+/* ============================================================
+   새로고침 버튼
+   ============================================================ */
+.refresh-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    margin-bottom: 16px;
+    transition: all 0.3s;
+}
+
+.refresh-btn:hover {
+    background: #5a6fd6;
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   중복 경고
+   ============================================================ */
+.duplicate-warning {
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: #991b1b;
+}
+
+.duplicate-warning strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.duplicate-warning ul {
+    margin-top: 8px;
+    padding-left: 16px;
+}
+
+.duplicate-warning li {
+    margin-bottom: 2px;
+}
+
+
+/* ============================================================
+   필터
+   ============================================================ */
+.filter-section {
+    margin-bottom: 20px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.filter-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+.filter-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.filter-btn {
+    padding: 10px 8px;
+    border: 2px solid #e8ecf1;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover {
+    border-color: #667eea;
+}
+
+.filter-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.filter-btn.warning {
+    border-color: #fca5a5;
+}
+
+.filter-btn.warning:hover {
+    border-color: #ef4444;
+}
+
+.filter-btn.warning.active {
+    background: #ef4444;
+    border-color: #ef4444;
+}
+
+.filter-btn .count {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+
+/* ============================================================
+   안내 박스
+   ============================================================ */
+.info-box {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: #92400e;
+}
+
+.info-box strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+
+/* ============================================================
+   응답자 목록
+   ============================================================ */
+.respondent-list {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.respondent-item {
+    padding: 14px;
+    border: 2px solid #e8ecf1;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.respondent-item:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.respondent-item.active {
+    border-color: #667eea;
+    background: #f0f3ff;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+}
+
+.respondent-item.sent {
+    opacity: 0.7;
+    background: #f8f9fa;
+}
+
+.respondent-item.duplicate {
+    border-color: #fca5a5;
+    background: #fef2f2;
+}
+
+.respondent-item.duplicate.sent {
+    opacity: 0.6;
+}
+
+.respondent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+}
+
+.respondent-name {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.status-badges {
+    display: flex;
+    gap: 4px;
+}
+
+.status-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.status-badge.sent {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-badge.duplicate {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.respondent-email {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.respondent-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tag {
+    background: #e8ecf1;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    color: #555;
+}
+
+.respondent-date {
+    font-size: 11px;
+    color: #999;
+    margin-top: 8px;
+}
+
+
+/* ============================================================
+   메일 미리보기
+   ============================================================ */
+.mail-preview {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.mail-header {
+    background: #f8f9fa;
+    padding: 24px;
+    border-bottom: 1px solid #e8ecf1;
+}
+
+.mail-field {
+    margin-bottom: 12px;
+}
+
+.mail-field:last-child {
+    margin-bottom: 0;
+}
+
+.mail-field label {
+    font-size: 12px;
+    color: #888;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.mail-field span {
+    font-size: 14px;
+    color: #333;
+}
+
+.mail-subject {
+    font-weight: 600;
+    font-size: 16px !important;
+}
+
+.mail-body {
+    padding: 30px;
+    min-height: 400px;
+}
+
+.mail-body-content {
+    white-space: pre-wrap;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.mail-actions {
+    padding: 20px 24px;
+    background: #f8f9fa;
+    border-top: 1px solid #e8ecf1;
+    display: flex;
+    gap: 12px;
+}
+
+
+/* ============================================================
+   버튼
+   ============================================================ */
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+}
+
+.btn-secondary:hover {
+    background: #f8f9ff;
+}
+
+
+/* ============================================================
+   상태 표시
+   ============================================================ */
+.empty-state {
+    text-align: center;
+    padding: 60px 30px;
+    color: #888;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e8ecf1;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ============================================================
+   토스트 메시지
+   ============================================================ */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #333;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 환불자 표시 */
+.refunded-details {
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.refunded-details summary {
+    cursor: pointer;
+    color: #dc2626;
+    font-weight: 500;
+}
+
+.refunded-name {
+    background: #fee2e2;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: #991b1b;
+}
+
+.progress-sub {
+    display: block;
+    font-size: 10px;
+    color: #888;
+    margin-top: 2px;
+}
