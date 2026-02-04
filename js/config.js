@@ -41,10 +41,11 @@ const CONFIG = {
     
     // 수강생 명단 컬럼명
     studentColumns: {
+        number: '순번',
         name: '성명',
-        grade: '등급'
-        email: '이메일'
-        phone: '연락처'
+        grade: '등급',
+        email: '이메일',
+        phone: '연락처',
         refund: '환불여부'
     },
     // 환불 인식값 (이 값이 입력되면 환불로 처리)
