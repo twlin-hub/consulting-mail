@@ -328,9 +328,7 @@ function generateMailBody(data) {
     // 텍스트 변환
     const statusText = TEXT_MAP.status[status] || status || '준비 중';
     const monetizationText = TEXT_MAP.monetization[monetization] || monetization || '수익화';
-    const targetText = (!target || target === '아직 정하지 못했다.') 
-        ? '아직 특정 진료과목을 정하지 않은 상태' 
-        : target;
+    const targetText = target || '';
     const concernText = TEXT_MAP.concern[concern] || concern || '사업 추진';
     
     // 메일 조립
