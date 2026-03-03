@@ -364,6 +364,12 @@ function generateMailBody(data) {
  * 인트로 (인사말 + 현황 진단) 생성
  */
 function generateIntro(name, status, monetization, target, concern) {
+    // 타겟 문장 조건부 생성
+    const isTargetUndecided = !target || target === '아직 특정 진료과목을 정하지 않은 상태';
+    const targetSentence = isTargetUndecided
+        ? `아직 타겟 진료과목은 정하지 않으셨고, ${concern}을 가장 큰 과제로 꼽으셨습니다.`
+        : `${target}을 타겟으로 하시며, ${concern}을 가장 큰 과제로 꼽으셨습니다.`;
+
     return `안녕하세요, ${name}님. ${CONFIG.sender.name}입니다.
 
 '병원 마케팅 대행사 노하우' 과정을 함께해 주셔서 감사합니다.
@@ -373,11 +379,12 @@ function generateIntro(name, status, monetization, target, concern) {
 📋 ${name}님 현황 진단
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-${name}님께서는 현재 ${status}이시고, ${monetization}을 계획하고 계시군요.
-${target}을 타겟으로 하시며, ${concern}을 가장 큰 과제로 꼽으셨습니다.
+${name}님께서는 현재 ${status}이시고, ${monetization}을 계획하고 계십니다.
+${targetSentence}
 
 `;
 }
+
 
 /**
  * 섹션 생성
