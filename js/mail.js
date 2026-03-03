@@ -365,7 +365,7 @@ function generateMailBody(data) {
  */
 function generateIntro(name, status, monetization, target, concern) {
     // 타겟 문장 조건부 생성
-    const isTargetUndecided = !target || target === '아직 특정 진료과목을 정하지 않은 상태';
+    const isTargetUndecided = !target || target.includes('아직') || target.includes('정하지');
     const targetSentence = isTargetUndecided
         ? `아직 타겟 진료과목은 정하지 않으셨고, ${concern}을 가장 큰 과제로 꼽으셨습니다.`
         : `${target}을 타겟으로 하시며, ${concern}을 가장 큰 과제로 꼽으셨습니다.`;
