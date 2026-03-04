@@ -381,11 +381,24 @@ function generateMailBody(data) {
  * 인트로 (인사말 + 현황 진단) 생성
  */
 function generateIntro(name, status, monetization, target, concern) {
-    // 타겟 문장 조건부 생성
-    const isTargetUndecided = !target || target.includes('아직') || target.includes('정하지');
-    const targetSentence = isTargetUndecided
-        ? `아직 타겟 진료과목은 정하지 않으셨고, ${concern}을 가장 큰 과제로 꼽으셨습니다.`
-        : `${target}을 타겟으로 하시며, ${concern}을 가장 큰 과제로 꼽으셨습니다.`;
+    // 타겟 조건 체크
+    const isTargetUndecided = !target || target.includes('아직') || target.includes('정하지') || target === '전체';
+    
+    // 고민 조건 체크
+    const isConcernUndecided = !concern || concern.includes('아직') || concern.includes('정하지');
+    
+    // 문장 조합
+    let targetSentence = '';
+    
+    if (isTargetUndecided && isConcernUndecided) {
+        targetSentence = '타겟 진료과목과 구체적인 고민은 앞으로 함께 정리해 나가면 좋겠습니다.';
+    } else if (isTargetUndecided) {
+        targetSentence = `아직 타겟 진료과목은 정하지 않으셨고, ${concern}을 가장 큰 과제로 꼽으셨습니다.`;
+    } else if (isConcernUndecided) {
+        targetSentence = `${target}을 타겟으로 하시며, 구체적인 고민은 앞으로 함께 정리해 나가면 좋겠습니다.`;
+    } else {
+        targetSentence = `${target}을 타겟으로 하시며, ${concern}을 가장 큰 과제로 꼽으셨습니다.`;
+    }
 
     return `안녕하세요, ${name}님. ${CONFIG.sender.name}입니다.
 
