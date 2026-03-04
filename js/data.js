@@ -197,30 +197,35 @@ function calculateProgress(respondents, studentList) {
 }
 
 /**
- * 중복 이메일 체크
+ * 중복 이메일 체크 (같은 이메일 + 같은 컨설팅 타입만 중복 처리)
  */
 function findDuplicateEmails(respondents) {
-    const emailCount = {};
+    const emailTypeCount = {};
     const duplicates = [];
     
     respondents.forEach((r, index) => {
         const email = (r[CONFIG.columns.email] || '').toLowerCase().trim();
+        const consultType = r._consultType || '';
+        const key = `${email}_${consultType}`;
+        
         if (email) {
-            if (emailCount[email]) {
-                emailCount[email].push(index);
+            if (emailTypeCount[key]) {
+                emailTypeCount[key].push(index);
             } else {
-                emailCount[email] = [index];
+                emailTypeCount[key] = [index];
             }
         }
     });
     
-    // 중복된 이메일만 추출
-    Object.keys(emailCount).forEach(email => {
-        if (emailCount[email].length > 1) {
+    // 같은 이메일 + 같은 타입이 2번 이상인 경우만 중복
+    Object.keys(emailTypeCount).forEach(key => {
+        if (emailTypeCount[key].length > 1) {
+            const indices = emailTypeCount[key];
+            const email = key.split('_')[0];
             duplicates.push({
                 email,
-                indices: emailCount[email],
-                names: emailCount[email].map(i => respondents[i][CONFIG.columns.name])
+                indices: indices,
+                names: indices.map(i => respondents[i][CONFIG.columns.name])
             });
         }
     });
